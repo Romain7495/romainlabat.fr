@@ -1,6 +1,8 @@
+import type { MouseEvent } from "react";
 import { useTranslation } from "react-i18next";
 import type { Basics, Locale } from "../types/resume";
 import profilePhoto from "@assets/profile.png";
+import { isIosLike } from "../utils/ios";
 
 type Props = {
   basics: Basics;
@@ -18,6 +20,18 @@ export function Hero({ basics, locale }: Props) {
     : baseUrl === "./"
       ? `./${pdfName}`
       : `${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}${pdfName}`;
+
+  const ios = isIosLike();
+  const onPdfClick = ios
+    ? (e: MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        const abs =
+          pdfHref.startsWith("http") || pdfHref.startsWith("//")
+            ? pdfHref
+            : new URL(pdfHref, window.location.href).href;
+        window.open(abs, "_blank", "noopener,noreferrer");
+      }
+    : undefined;
 
   return (
     <header className="hero reveal">
@@ -46,9 +60,10 @@ export function Hero({ basics, locale }: Props) {
         <a
           className="btn btn-primary"
           href={pdfHref}
-          download
+          {...(ios ? {} : { download: true })}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={onPdfClick}
         >
           {t("downloadPdf")}
         </a>

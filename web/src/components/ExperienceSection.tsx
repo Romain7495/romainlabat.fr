@@ -1,3 +1,4 @@
+import { ExternalLink } from "./ExternalLink";
 import { fmtJobRange } from "../utils/dates";
 import type { WorkEntry } from "../types/resume";
 
@@ -10,11 +11,7 @@ type Props = {
 function OrgName({ w }: { w: WorkEntry }) {
   const name = w.name ?? "";
   if (w.url) {
-    return (
-      <a href={w.url} target="_blank" rel="noopener noreferrer">
-        {name}
-      </a>
-    );
+    return <ExternalLink href={w.url}>{name}</ExternalLink>;
   }
   return <>{name}</>;
 }

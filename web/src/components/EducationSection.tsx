@@ -1,3 +1,4 @@
+import { ExternalLink } from "./ExternalLink";
 import { fmtEduRange } from "../utils/dates";
 import type { EducationEntry } from "../types/resume";
 
@@ -9,11 +10,7 @@ type Props = {
 function School({ e }: { e: EducationEntry }) {
   const name = e.institution ?? "";
   if (e.url) {
-    return (
-      <a href={e.url} target="_blank" rel="noopener noreferrer">
-        {name}
-      </a>
-    );
+    return <ExternalLink href={e.url}>{name}</ExternalLink>;
   }
   return <>{name}</>;
 }
