@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { DevModeBanner } from "./components/DevModeBanner";
 import { EducationSection } from "./components/EducationSection";
 import { ExperienceSection } from "./components/ExperienceSection";
 import { Footer } from "./components/Footer";
@@ -32,19 +33,22 @@ export default function App() {
   const basics = resume.basics ?? {};
 
   return (
-    <div className="wrap">
-      <div className="top-bar">
-        <LangSwitch />
+    <>
+      <DevModeBanner />
+      <div className={`wrap${import.meta.env.DEV ? " wrap--dev-banner" : ""}`}>
+        <div className="top-bar">
+          <LangSwitch />
+        </div>
+        <Hero basics={basics} locale={locale} />
+        <ExperienceSection
+          title={L.experience ?? "Experience"}
+          present={L.present ?? "present"}
+          entries={resume.work ?? []}
+        />
+        <SkillsSection title={L.skills ?? "Skills"} categories={resume.skills ?? []} />
+        <EducationSection title={L.education ?? "Education"} entries={resume.education ?? []} />
+        <Footer labelsLanguages={L.languages ?? "Languages"} languages={resume.languages ?? []} />
       </div>
-      <Hero basics={basics} locale={locale} />
-      <ExperienceSection
-        title={L.experience ?? "Experience"}
-        present={L.present ?? "present"}
-        entries={resume.work ?? []}
-      />
-      <SkillsSection title={L.skills ?? "Skills"} categories={resume.skills ?? []} />
-      <EducationSection title={L.education ?? "Education"} entries={resume.education ?? []} />
-      <Footer labelsLanguages={L.languages ?? "Languages"} languages={resume.languages ?? []} />
-    </div>
+    </>
   );
 }

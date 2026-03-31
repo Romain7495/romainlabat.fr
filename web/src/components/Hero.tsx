@@ -12,8 +12,10 @@ export function Hero({ basics, locale }: Props) {
   const location = [basics.location?.city, basics.location?.countryCode].filter(Boolean).join(", ");
   const pdfName = `resume-${locale}.pdf`;
   const baseUrl = import.meta.env.BASE_URL;
-  const pdfHref =
-    baseUrl === "./"
+  /* Dev : fichiers copiés dans web/public → servis à la racine du serveur Vite */
+  const pdfHref = import.meta.env.DEV
+    ? `/${pdfName}`
+    : baseUrl === "./"
       ? `./${pdfName}`
       : `${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}${pdfName}`;
 

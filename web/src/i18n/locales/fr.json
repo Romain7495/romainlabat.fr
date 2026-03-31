@@ -11,5 +11,7 @@
   "language": "Langue",
   "langEn": "English",
   "langFr": "Français",
-  "langSwitch": "Langue de l’interface"
+  "langSwitch": "Langue de l’interface",
+  "devBannerTitle": "Mode développement",
+  "devBannerSubtitle": "Vite en localhost — pas le site publié"
 }

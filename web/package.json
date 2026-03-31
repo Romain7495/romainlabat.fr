@@ -4,6 +4,7 @@
   "type": "module",
   "scripts": {
     "prebuild": "node scripts/sync-public.mjs",
+    "predev": "node scripts/sync-public.mjs",
     "dev": "vite",
     "typecheck": "tsc --noEmit",
     "build": "vite build",

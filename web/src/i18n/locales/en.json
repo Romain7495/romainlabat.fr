@@ -11,5 +11,7 @@
   "language": "Language",
   "langEn": "English",
   "langFr": "Français",
-  "langSwitch": "Interface language"
+  "langSwitch": "Interface language",
+  "devBannerTitle": "Development mode",
+  "devBannerSubtitle": "Vite on localhost — not the published site"
 }

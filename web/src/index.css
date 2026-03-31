@@ -55,6 +55,103 @@ body {
   min-height: 100vh;
 }
 
+/* —— Dev server only (import.meta.env.DEV) —— */
+.dev-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 10000;
+  /* Les clics traversent : la langue / le reste de l’UI reste utilisable si chevauchement */
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.08rem;
+  padding: calc(3px + 0.32rem) 0.75rem 0.38rem;
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 45%, #9a3412 100%);
+  color: #fffbeb;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: geometricPrecision;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.25);
+}
+
+@media (min-width: 640px) {
+  .dev-banner {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.45rem 0.65rem;
+    padding: calc(3px + 0.28rem) 1rem 0.35rem;
+  }
+
+  .dev-banner-inner {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.7rem;
+    max-width: none;
+  }
+}
+
+.dev-banner-strip {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: repeating-linear-gradient(
+    -45deg,
+    #fef3c7,
+    #fef3c7 6px,
+    #1c1917 6px,
+    #1c1917 12px
+  );
+  opacity: 0.95;
+}
+
+.dev-banner-inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+  max-width: 40rem;
+}
+
+.dev-banner-title {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.dev-banner-sub {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 400;
+  letter-spacing: 0.03em;
+  color: rgba(255, 251, 235, 0.92);
+  line-height: 1.35;
+  max-width: 36rem;
+}
+
+.wrap--dev-banner {
+  padding-top: 3.35rem;
+}
+
+@media (min-width: 640px) {
+  .wrap--dev-banner {
+    padding-top: 2.85rem;
+  }
+}
+
 /* Liens : éviter le bleu WebKit (-webkit-any-link) en dev / Safari */
 a {
   color: var(--muted);

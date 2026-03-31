@@ -24,7 +24,7 @@
     "build:en": "npm run html:en && npm run pdf:en",
     "build:fr": "npm run html:fr && npm run pdf:fr",
     "build:all": "npm run build && npm run build:web",
-    "dev:web": "npm run dev -w resume-web",
+    "dev:web": "npm run build && npm run dev -w resume-web",
     "build:web": "npm run build -w resume-web",
     "typecheck:web": "npm run typecheck -w resume-web"
   },
