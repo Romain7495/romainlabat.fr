@@ -6,7 +6,11 @@ import { defineConfig } from "vite";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(__dirname, "..");
 
+/** GitHub project pages: /<repo>/ ; user/org site (*.github.io repo): / */
+const viteBase = (process.env.VITE_BASE ?? "/").replace(/\/?$/, "/");
+
 export default defineConfig({
+  base: viteBase,
   plugins: [react()],
   resolve: {
     alias: {

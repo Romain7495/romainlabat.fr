@@ -18,9 +18,13 @@ const html = await buildCompactHtml(resume, { rootDir: root });
 
 const pdfOptions = buildPdfOptions(resume.meta?.pdfRenderOptions);
 
+const isCi = process.env.CI === "true";
 const browser = await puppeteer.launch({
   headless: true,
-  args: ["--disable-font-subpixel-positioning"],
+  args: [
+    "--disable-font-subpixel-positioning",
+    ...(isCi ? ["--no-sandbox", "--disable-setuid-sandbox"] : []),
+  ],
 });
 const page = await browser.newPage();
 const { width, height } = getPrintViewportSize();

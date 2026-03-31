@@ -1,3 +1,6 @@
+# Validates JSON Resume, generates PDF/HTML under dist/, builds the React app, deploys to GitHub Pages.
+# Enable: Repo → Settings → Pages → Build and deployment → Source: GitHub Actions.
+
 name: Resume
 
 on:
@@ -5,6 +8,15 @@ on:
     branches: [main, master]
   pull_request:
     branches: [main, master]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -17,13 +29,37 @@ jobs:
           node-version: "22"
           cache: npm
 
+      - name: Cache Puppeteer Chromium
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/puppeteer
+          key: puppeteer-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
       - run: npm ci
 
       - run: npm run validate
 
-      - run: npm run build
+      - name: Generate HTML and PDF
+        run: npm run build
 
-      - run: npm run build:web
+      - name: Set Vite base for GitHub Pages
+        run: |
+          NAME="${{ github.event.repository.name }}"
+          case "$NAME" in
+            *.github.io)
+              echo "VITE_BASE=/" >> "$GITHUB_ENV"
+              echo "Using base / (user or organization site)" >> "$GITHUB_STEP_SUMMARY"
+              ;;
+            *)
+              echo "VITE_BASE=/$NAME/" >> "$GITHUB_ENV"
+              echo "Using base /$NAME/ (project site)" >> "$GITHUB_STEP_SUMMARY"
+              ;;
+          esac
+
+      - run: npm run typecheck:web
+
+      - name: Build React site
+        run: npm run build:web
 
       - uses: actions/upload-artifact@v4
         with:
@@ -32,7 +68,19 @@ jobs:
             dist/pdf/resume-en.pdf
             dist/pdf/resume-fr.pdf
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload GitHub Pages artifact
+        if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+        uses: actions/upload-pages-artifact@v3
         with:
-          name: resume-site
-          path: web/dist/
+          path: web/dist
+
+  deploy:
+    if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - id: deploy
+        uses: actions/deploy-pages@v4
