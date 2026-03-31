@@ -49,19 +49,7 @@ jobs:
       - name: Generate HTML and PDF
         run: npm run build
 
-      - name: Set Vite base for GitHub Pages
-        run: |
-          NAME="${{ github.event.repository.name }}"
-          case "$NAME" in
-            *.github.io)
-              echo "VITE_BASE=/" >> "$GITHUB_ENV"
-              echo "Using base / (user or organization site)" >> "$GITHUB_STEP_SUMMARY"
-              ;;
-            *)
-              echo "VITE_BASE=/$NAME/" >> "$GITHUB_ENV"
-              echo "Using base /$NAME/ (project site)" >> "$GITHUB_STEP_SUMMARY"
-              ;;
-          esac
+      # Vite base defaults to ./ (relative) so github.io/user/repo and custom domain root both work.
 
       - run: npm run typecheck:web
 

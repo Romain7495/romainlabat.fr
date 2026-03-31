@@ -11,10 +11,11 @@ export function Hero({ basics, locale }: Props) {
   const { t } = useTranslation("common");
   const location = [basics.location?.city, basics.location?.countryCode].filter(Boolean).join(", ");
   const pdfName = `resume-${locale}.pdf`;
-  const base = import.meta.env.BASE_URL.endsWith("/")
-    ? import.meta.env.BASE_URL
-    : `${import.meta.env.BASE_URL}/`;
-  const pdfHref = `${base}${pdfName}`;
+  const baseUrl = import.meta.env.BASE_URL;
+  const pdfHref =
+    baseUrl === "./"
+      ? `./${pdfName}`
+      : `${baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`}${pdfName}`;
 
   return (
     <header className="hero reveal">
