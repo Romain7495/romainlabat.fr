@@ -429,10 +429,11 @@ h2 {
 }
 
 .edu-list li {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.25rem 1.25rem;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax(11rem, 19rem) minmax(0, 1fr) auto;
+  column-gap: 1.25rem;
+  row-gap: 0.35rem;
+  align-items: baseline;
   padding: 0.65rem 0;
   border-bottom: 1px solid var(--border);
   font-size: 0.9rem;
@@ -444,6 +445,8 @@ h2 {
 
 .edu-school {
   font-weight: 500;
+  min-width: 0;
+  word-break: break-word;
 }
 
 .edu-school a {
@@ -459,12 +462,27 @@ h2 {
 .edu-detail {
   color: var(--muted);
   font-size: 0.85rem;
+  min-width: 0;
 }
 
 .edu-dates {
   font-family: var(--font-mono);
   font-size: 0.72rem;
   color: var(--dim);
+  white-space: nowrap;
+  justify-self: end;
+  text-align: right;
+}
+
+@media (max-width: 520px) {
+  .edu-list li {
+    grid-template-columns: 1fr;
+  }
+
+  .edu-dates {
+    justify-self: start;
+    text-align: left;
+  }
 }
 
 footer {
