@@ -1,5 +1,12 @@
 # Validates JSON Resume, generates PDF/HTML under dist/, builds the React app, deploys to GitHub Pages.
-# Enable: Repo → Settings → Pages → Build and deployment → Source: GitHub Actions.
+#
+# If deploy fails with: HttpError: Not Found (createPagesDeployment):
+# 1) Settings → Pages → Build and deployment → Source: "GitHub Actions" (not "Deploy from a branch").
+# 2) Settings → Actions → General → Workflow permissions: allow workflows to read/write (or keep default;
+#    the permissions block below still requests pages:write + id-token:write).
+# 3) Private repo: GitHub Pages from Actions needs a plan that includes Pages for private repos.
+#
+# After changing Pages source to GitHub Actions, re-run the failed workflow.
 
 name: Resume
 
@@ -78,9 +85,13 @@ jobs:
     if: github.event_name == 'push' && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+      actions: read
     environment:
       name: github-pages
-      url: ${{ steps.deploy.outputs.page_url }}
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deploy
+      - id: deployment
         uses: actions/deploy-pages@v4
