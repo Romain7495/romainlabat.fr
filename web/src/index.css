@@ -55,14 +55,24 @@ body {
   min-height: 100vh;
 }
 
+/* Liens : éviter le bleu WebKit (-webkit-any-link) en dev / Safari */
 a {
-  color: var(--accent);
+  color: var(--muted);
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.15s ease, color 0.15s ease;
 }
 
+a:any-link,
+a:-webkit-any-link,
+a:visited {
+  color: var(--muted);
+  -webkit-text-fill-color: var(--muted);
+}
+
 a:hover {
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
   border-bottom-color: var(--accent);
 }
 
@@ -230,9 +240,20 @@ h1 {
   transition: border-color 0.15s ease, background 0.15s ease;
 }
 
+a.btn:any-link,
+a.btn:-webkit-any-link {
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+}
+
 .btn:hover {
   border-color: rgba(94, 234, 212, 0.35);
   background: rgba(255, 255, 255, 0.03);
+}
+
+a.btn:hover {
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
 }
 
 .btn-primary {
@@ -241,8 +262,19 @@ h1 {
   color: var(--accent);
 }
 
+a.btn-primary:any-link,
+a.btn-primary:-webkit-any-link {
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
+}
+
 .btn-primary:hover {
   background: rgba(94, 234, 212, 0.2);
+}
+
+a.btn-primary:hover {
+  color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
 }
 
 .meta-line {
@@ -336,13 +368,19 @@ h2 {
   font-size: 1.02rem;
 }
 
-.job-org a {
-  color: inherit;
+.job-org a,
+.job-org a:any-link,
+.job-org a:-webkit-any-link,
+.job-org a:visited {
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  text-decoration: none;
   border-bottom: 1px dotted var(--dim);
 }
 
 .job-org a:hover {
   color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
   border-bottom-color: var(--accent);
 }
 
@@ -449,13 +487,19 @@ h2 {
   word-break: break-word;
 }
 
-.edu-school a {
-  color: inherit;
+.edu-school a,
+.edu-school a:any-link,
+.edu-school a:-webkit-any-link,
+.edu-school a:visited {
+  color: var(--text);
+  -webkit-text-fill-color: var(--text);
+  text-decoration: none;
   border-bottom: 1px dotted var(--dim);
 }
 
 .edu-school a:hover {
   color: var(--accent);
+  -webkit-text-fill-color: var(--accent);
   border-bottom-color: var(--accent);
 }
 
