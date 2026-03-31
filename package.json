@@ -32,5 +32,8 @@
   "dependencies": {
     "puppeteer": "^24.40.0",
     "resumed": "^6.1.0"
+  },
+  "overrides": {
+    "@types/node": "22.19.15"
   }
 }
