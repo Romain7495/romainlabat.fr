@@ -2,24 +2,33 @@
   "name": "resume",
   "version": "1.0.0",
   "private": true,
-  "description": "JSON Resume — compact two-column HTML/PDF",
-  "main": "index.js",
+  "workspaces": [
+    "web"
+  ],
+  "description": "JSON Resume — compact two-column HTML/PDF (CI-friendly)",
+  "type": "module",
+  "main": "back/src/render/index.mjs",
+  "exports": {
+    ".": "./back/src/render/index.mjs",
+    "./render": "./back/src/render/index.mjs"
+  },
   "scripts": {
-    "validate": "resumed validate resume.json && resumed validate resume.fr.json",
-    "html": "node scripts/render-html.mjs en",
-    "html:en": "node scripts/render-html.mjs en",
-    "html:fr": "node scripts/render-html.mjs fr",
-    "pdf": "node scripts/export-pdf.mjs en",
-    "pdf:en": "node scripts/export-pdf.mjs en",
-    "pdf:fr": "node scripts/export-pdf.mjs fr",
+    "validate": "resumed validate content/resume-en.json && resumed validate content/resume-fr.json",
+    "html": "node back/src/cli/render-html.mjs en",
+    "html:en": "node back/src/cli/render-html.mjs en",
+    "html:fr": "node back/src/cli/render-html.mjs fr",
+    "pdf": "node back/src/cli/export-pdf.mjs en",
+    "pdf:en": "node back/src/cli/export-pdf.mjs en",
+    "pdf:fr": "node back/src/cli/export-pdf.mjs fr",
     "build": "npm run build:en && npm run build:fr",
     "build:en": "npm run html:en && npm run pdf:en",
-    "build:fr": "npm run html:fr && npm run pdf:fr"
+    "build:fr": "npm run html:fr && npm run pdf:fr",
+    "build:all": "npm run build && npm run build:web",
+    "dev:web": "npm run dev -w resume-web",
+    "build:web": "npm run build -w resume-web",
+    "typecheck:web": "npm run typecheck -w resume-web"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "puppeteer": "^24.40.0",
     "resumed": "^6.1.0"

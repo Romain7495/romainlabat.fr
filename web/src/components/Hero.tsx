@@ -1,0 +1,59 @@
+import { useTranslation } from "react-i18next";
+import type { Basics, Locale } from "../types/resume";
+import profilePhoto from "@assets/profile.png";
+
+type Props = {
+  basics: Basics;
+  locale: Locale;
+};
+
+export function Hero({ basics, locale }: Props) {
+  const { t } = useTranslation("common");
+  const location = [basics.location?.city, basics.location?.countryCode].filter(Boolean).join(", ");
+  const pdfName = `resume-${locale}.pdf`;
+  const base = import.meta.env.BASE_URL.endsWith("/")
+    ? import.meta.env.BASE_URL
+    : `${import.meta.env.BASE_URL}/`;
+  const pdfHref = `${base}${pdfName}`;
+
+  return (
+    <header className="hero reveal">
+      <div className="hero-top">
+        <img
+          className="hero-photo"
+          src={profilePhoto}
+          width={96}
+          height={96}
+          alt={basics.name ?? ""}
+        />
+        <div className="hero-text">
+          <p className="hero-eyebrow">{t("heroEyebrow")}</p>
+          <h1>{basics.name}</h1>
+          <p className="hero-role">{basics.label}</p>
+          <ul className="hero-tags" aria-label="Focus">
+            <li>{t("heroTagSre")}</li>
+            <li>{t("heroTagK8s")}</li>
+            <li>{t("heroTagGitOps")}</li>
+            <li>{t("heroTagId")}</li>
+          </ul>
+        </div>
+      </div>
+      {basics.summary ? <p className="hero-summary">{basics.summary}</p> : null}
+      <div className="hero-actions">
+        <a className="btn btn-primary" href={pdfHref} download>
+          {t("downloadPdf")}
+        </a>
+        {basics.email ? (
+          <a className="btn" href={`mailto:${basics.email}`}>
+            {t("email")}
+          </a>
+        ) : null}
+        {location ? (
+          <span className="meta-line">
+            <span>{t("locationLabel")}</span> {location}
+          </span>
+        ) : null}
+      </div>
+    </header>
+  );
+}

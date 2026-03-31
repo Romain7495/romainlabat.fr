@@ -1,0 +1,15 @@
+{
+  "heroEyebrow": "Fiabilité · Plateforme · Sécurité",
+  "heroTagSre": "SRE",
+  "heroTagK8s": "Kubernetes",
+  "heroTagGitOps": "GitOps",
+  "heroTagId": "Identité & secrets",
+  "downloadPdf": "Télécharger le CV (PDF)",
+  "email": "E-mail",
+  "locationLabel": "Localisation",
+  "footerNote": "SPA · React · JSON Resume",
+  "language": "Langue",
+  "langEn": "English",
+  "langFr": "Français",
+  "langSwitch": "Langue de l’interface"
+}

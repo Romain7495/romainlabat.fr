@@ -1,0 +1,177 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Romain Labat",
+    "label": "Site Reliability Engineer Team Leader",
+    "email": "contact@romainlabat.fr",
+    "phone": "+33 6 98 30 19 95",
+    "summary": "SRE Team Lead sur une plateforme cloud-native traitant ~240 M requêtes HTTP externes/mois. Expertise en architecture de plateforme Kubernetes, GitOps, identité (Keycloak), gestion des secrets et fiabilité des systèmes distribués.",
+    "location": {
+      "city": "Antibes",
+      "countryCode": "FR"
+    },
+    "profiles": [],
+    "image": "assets/profile.png"
+  },
+  "work": [
+    {
+      "name": "Smood SA",
+      "position": "Site Reliability Engineer Team Leader",
+      "startDate": "2020-01",
+      "summary": "Responsable technique d'une plateforme Kubernetes à grande échelle (~240 M requêtes externes/mois).",
+      "highlights": [
+        "Migration d'une infrastructure physique vers Google Kubernetes Engine.",
+        "Standardisation des déploiements via GitOps avec ArgoCD et modèles CI/CD.",
+        "Architecture d'identité centralisée avec Keycloak (OIDC / SSO).",
+        "Gestion sécurisée des secrets avec HashiCorp Vault.",
+        "Migration MongoDB vers MongoDB Atlas.",
+        "Observabilité complète avec Datadog et automatisation des opérations.",
+        "Référent plateforme sur la fiabilité et l'architecture technique.",
+        "Stack : GCP, Kubernetes, Docker, ArgoCD, Vault, Keycloak, MongoDB Atlas, GitLab CI/CD, Datadog."
+      ]
+    },
+    {
+      "name": "KPMG Luxembourg",
+      "position": "DevOps Engineer Team Leader",
+      "startDate": "2018-01",
+      "endDate": "2020-01",
+      "summary": "Pipelines CI/CD, infrastructure conteneurisée et diffusion des pratiques DevOps.",
+      "highlights": [
+        "Mise en place de pipelines CI/CD et déploiements Kubernetes.",
+        "Infrastructure as Code avec Terraform et Ansible.",
+        "Automatisation de la supervision et des environnements.",
+        "Diffusion des pratiques DevOps auprès des équipes."
+      ]
+    },
+    {
+      "name": "EPITA",
+      "position": "Administrateur systèmes & projets logiciels (SIGL)",
+      "url": "https://www.epita.fr",
+      "startDate": "2016-01",
+      "endDate": "2018-01",
+      "summary": "Systèmes, virtualisation et delivery applicatif pour l'infrastructure de l'école.",
+      "highlights": [
+        "Administration d'infrastructure virtualisée (VMware, Active Directory).",
+        "Déploiements OpenShift et environnements applicatifs.",
+        "Conception et maintenance d'un intranet applicatif (Angular / Node.js).",
+        "Participation à l'architecture et à l'automatisation des environnements."
+      ]
+    },
+    {
+      "name": "Autorité des marchés financiers (AMF)",
+      "position": "Stagiaire DevOps / Intégration",
+      "url": "https://www.amf-france.org",
+      "startDate": "2016-01",
+      "endDate": "2016-12",
+      "summary": "Stage en parallèle du cursus EPITA (SIGL).",
+      "highlights": [
+        "Industrialisation de processus liés aux environnements de test.",
+        "Automatisation de workflows techniques."
+      ]
+    }
+  ],
+  "volunteer": [],
+  "education": [
+    {
+      "institution": "EPITA",
+      "url": "https://www.epita.fr",
+      "area": "Systèmes d'information & génie logiciel (SIGL)",
+      "studyType": "Diplôme d'ingénieur — école d'ingénieurs en informatique",
+      "startDate": "2015-01",
+      "endDate": "2018-01",
+      "courses": []
+    },
+    {
+      "institution": "Centre International de Valbonne",
+      "url": "https://civfrance.com/",
+      "area": "PCSI / PC",
+      "studyType": "Classe préparatoire",
+      "startDate": "2014-01",
+      "endDate": "2016-01",
+      "courses": []
+    },
+    {
+      "institution": "Lycée Amiral de Grasse, Grasse",
+      "url": "https://www.education.gouv.fr/annuaire/06130/grasse/lycee/0060020p/lycee-amiral-de-grasse.html",
+      "area": "Bac scientifique",
+      "studyType": "Baccalauréat",
+      "startDate": "2011-09",
+      "endDate": "2014-06",
+      "courses": []
+    }
+  ],
+  "awards": [],
+  "certificates": [],
+  "publications": [],
+  "skills": [
+    {
+      "name": "Cloud & plateforme",
+      "level": "Expert",
+      "keywords": [
+        "Kubernetes",
+        "Docker",
+        "Google Cloud Platform (GKE)",
+        "Architecture cloud",
+        "MongoDB Atlas"
+      ]
+    },
+    {
+      "name": "DevOps & CI/CD",
+      "level": "Expert",
+      "keywords": [
+        "ArgoCD",
+        "GitOps",
+        "GitLab CI/CD",
+        "Terraform",
+        "Ansible",
+        "CI/CD"
+      ]
+    },
+    {
+      "name": "Sécurité & identité",
+      "level": "Avancé",
+      "keywords": [
+        "Keycloak",
+        "OIDC",
+        "SSO",
+        "HashiCorp Vault",
+        "Gestion des secrets"
+      ]
+    },
+    {
+      "name": "Observabilité",
+      "level": "Avancé",
+      "keywords": ["Datadog", "Supervision", "Automatisation opérationnelle"]
+    }
+  ],
+  "languages": [
+    {
+      "language": "Français",
+      "fluency": "Langue maternelle"
+    },
+    {
+      "language": "Anglais",
+      "fluency": "Professionnel courant"
+    }
+  ],
+  "interests": [],
+  "references": [],
+  "projects": [],
+  "meta": {
+    "locale": "fr",
+    "labels": {
+      "contact": "Coordonnées",
+      "skills": "Compétences",
+      "languages": "Langues",
+      "experience": "Expérience",
+      "education": "Études",
+      "present": "présent"
+    },
+    "pdfRenderOptions": {
+      "format": "A4",
+      "printBackground": true,
+      "preferCSSPageSize": false,
+      "margin": { "top": "0", "right": "0", "bottom": "12mm", "left": "0" }
+    }
+  }
+}
