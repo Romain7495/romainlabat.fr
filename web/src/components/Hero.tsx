@@ -41,7 +41,13 @@ export function Hero({ basics, locale }: Props) {
       </div>
       {basics.summary ? <p className="hero-summary">{basics.summary}</p> : null}
       <div className="hero-actions">
-        <a className="btn btn-primary" href={pdfHref} download>
+        <a
+          className="btn btn-primary"
+          href={pdfHref}
+          download
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           {t("downloadPdf")}
         </a>
         {basics.email ? (

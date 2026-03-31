@@ -15,7 +15,8 @@ const BASE_PDF_OPTIONS = Object.freeze({
     bottom: PDF_MARGIN_BOTTOM,
     left: "0",
   }),
-  tagged: true,
+  /* tagged PDF forces link annotations that many viewers draw in default blue */
+  tagged: false,
   waitForFonts: true,
 });
 

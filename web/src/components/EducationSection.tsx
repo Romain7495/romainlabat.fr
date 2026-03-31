@@ -10,7 +10,7 @@ function School({ e }: { e: EducationEntry }) {
   const name = e.institution ?? "";
   if (e.url) {
     return (
-      <a href={e.url} rel="noopener noreferrer">
+      <a href={e.url} target="_blank" rel="noopener noreferrer">
         {name}
       </a>
     );

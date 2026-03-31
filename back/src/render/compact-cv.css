@@ -23,6 +23,54 @@ body {
   margin: 0;
   min-height: 100%;
 }
+
+/*
+ * Liens : reset navigateur / WebKit (-webkit-any-link) + rendu sobre (pas de bleu).
+ * PDF : combiné avec tagged:false dans pdf-options pour éviter les surlignages bleus des lecteurs.
+ */
+.cv a:any-link,
+.cv a:-webkit-any-link {
+  cursor: pointer;
+}
+
+.cv .sidebar a:any-link,
+.cv .sidebar a:-webkit-any-link,
+.cv .sidebar a:link,
+.cv .sidebar a:visited,
+.cv .sidebar a:active {
+  color: #f7f9fc !important;
+  -webkit-text-fill-color: #f7f9fc !important;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  border-bottom: 1px solid rgba(247, 249, 252, 0.38);
+  padding-bottom: 0.06em;
+}
+
+.cv .main .company a:any-link,
+.cv .main .company a:-webkit-any-link,
+.cv .main .company a:link,
+.cv .main .company a:visited,
+.cv .main .company a:active {
+  color: #4a4a4a !important;
+  -webkit-text-fill-color: #4a4a4a !important;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  border-bottom: 1px solid rgba(74, 74, 74, 0.28);
+  padding-bottom: 0.06em;
+}
+
+.cv .main .edu-inst a:any-link,
+.cv .main .edu-inst a:-webkit-any-link,
+.cv .main .edu-inst a:link,
+.cv .main .edu-inst a:visited,
+.cv .main .edu-inst a:active {
+  color: #6a6a6a !important;
+  -webkit-text-fill-color: #6a6a6a !important;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  border-bottom: 1px solid rgba(106, 106, 106, 0.35);
+  padding-bottom: 0.06em;
+}
 .cv {
   display: flex;
   align-items: stretch;
@@ -94,7 +142,6 @@ body {
   margin: 7px 0;
   word-break: break-word;
 }
-.contact-line a { color: inherit; text-decoration: none; }
 .skill-list, .lang-list {
   list-style: none;
   font-size: 0.95rem;
@@ -190,12 +237,40 @@ ul.dots li { margin: 4px 0; }
   line-height: 1.45;
   color: var(--heading-strong);
 }
-.edu-inst { font-size: 0.92rem; color: var(--muted); margin-top: 4px; line-height: 1.45; }
-
+.edu-inst {
+  font-size: 0.92rem;
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.45;
+}
 @media print {
   * {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
+  }
+  .cv .sidebar a:any-link,
+  .cv .sidebar a:-webkit-any-link,
+  .cv .sidebar a:visited {
+    color: #f7f9fc !important;
+    -webkit-text-fill-color: #f7f9fc !important;
+    text-decoration: none !important;
+    border-bottom-color: rgba(247, 249, 252, 0.42) !important;
+  }
+  .cv .main .company a:any-link,
+  .cv .main .company a:-webkit-any-link,
+  .cv .main .company a:visited {
+    color: #4a4a4a !important;
+    -webkit-text-fill-color: #4a4a4a !important;
+    text-decoration: none !important;
+    border-bottom-color: rgba(74, 74, 74, 0.3) !important;
+  }
+  .cv .main .edu-inst a:any-link,
+  .cv .main .edu-inst a:-webkit-any-link,
+  .cv .main .edu-inst a:visited {
+    color: #6a6a6a !important;
+    -webkit-text-fill-color: #6a6a6a !important;
+    text-decoration: none !important;
+    border-bottom-color: rgba(106, 106, 106, 0.38) !important;
   }
   /*
    * Hauteur 100% : doit coïncider avec le viewport Puppeteer = A4 − marge bas

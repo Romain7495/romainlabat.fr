@@ -50,6 +50,8 @@ export async function buildCompactHtml(resume, { rootDir } = {}) {
     })
     .join("");
 
+  const blank = ' target="_blank" rel="noopener noreferrer"';
+
   const workHtml = (resume.work || [])
     .map((w) => {
       const { start, end } = fmtRange(w.startDate, w.endDate, L.present);
@@ -60,11 +62,14 @@ export async function buildCompactHtml(resume, { rootDir } = {}) {
       const sum = w.summary
         ? `<p class="exp-sum">${escapeHtml(w.summary)}</p>`
         : "";
+      const company = w.url
+        ? `<a href="${escapeAttr(w.url)}"${blank}>${escapeHtml(w.name || "")}</a>`
+        : escapeHtml(w.name || "");
       return `<div class="grid-row">
   <div class="dates">${dateCol}</div>
   <div>
     <div class="role">${escapeHtml(w.position || "")}</div>
-    <div class="company">${escapeHtml(w.name || "")}</div>
+    <div class="company">${company}</div>
     ${sum}
     ${highs ? `<ul class="dots">${highs}</ul>` : ""}
   </div>
@@ -78,7 +83,7 @@ export async function buildCompactHtml(resume, { rootDir } = {}) {
       const dateCol = `${escapeHtml(start)}<br>—<br>${escapeHtml(end)}`;
       const parts = [e.studyType, e.area].filter(Boolean).join(", ");
       const inst = e.url
-        ? `<a href="${escapeAttr(e.url)}">${escapeHtml(e.institution || "")}</a>`
+        ? `<a href="${escapeAttr(e.url)}"${blank}>${escapeHtml(e.institution || "")}</a>`
         : escapeHtml(e.institution || "");
       return `<div class="grid-row">
   <div class="dates">${dateCol}</div>

@@ -6,6 +6,7 @@ import { resolveBuildTarget } from "../lib/build-target.mjs";
 import { ensureParentDir } from "../lib/ensure-dir.mjs";
 import { getPrintViewportSize } from "../lib/pdf-layout.mjs";
 import { buildPdfOptions } from "../lib/pdf-options.mjs";
+import { stripPdfLinkAnnotations } from "../lib/strip-pdf-link-annotations.mjs";
 import { buildCompactHtml } from "../render/html-document.mjs";
 
 const root = getProjectRoot(import.meta.url);
@@ -30,8 +31,9 @@ const page = await browser.newPage();
 const { width, height } = getPrintViewportSize();
 await page.setViewport({ width, height, deviceScaleFactor: 1 });
 await page.setContent(html, { waitUntil: "domcontentloaded", baseURL: `file://${root}/` });
-const buf = await page.pdf(pdfOptions);
+let buf = await page.pdf(pdfOptions);
 await browser.close();
+buf = await stripPdfLinkAnnotations(buf);
 await ensureParentDir(outPath);
 await writeFile(outPath, buf);
 console.log(`Wrote ${outPath} (${target.id})`);

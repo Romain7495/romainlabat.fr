@@ -11,7 +11,7 @@ function OrgName({ w }: { w: WorkEntry }) {
   const name = w.name ?? "";
   if (w.url) {
     return (
-      <a href={w.url} rel="noopener noreferrer">
+      <a href={w.url} target="_blank" rel="noopener noreferrer">
         {name}
       </a>
     );
